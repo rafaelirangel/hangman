@@ -51,30 +51,43 @@ Ask if the player wants to play again. -->
 	  
   </head>
   <body>
+    <!--Container for the whole page-->
     <div class="container">
         <h1>Welcome to the HangMan!</h1>
-        
+        <!--Instructions and Hints-->
         <div class="instContent">
           <div class="gameInst">
             <h2>GAME INSTRUCTIONS</h2>
             <p>Guess the letters in the secret word to solve the puzzle. You can guess a letter by clicking on it.
-                  Game ends when the player either correctly identifies the word or submits 6 incorrect guesses.
-                  Choose play to jump right into a game, or choose your own word by typing it on your keyboard.</p>
+            <br>Game ends when the player either correctly identifies the word or submits 6 incorrect guesses.
+            <br>Choose play to jump right into the game, or choose 'Enter Your Own' to enter your own choice by typing it on your keyboard.</p>
           </div>
           <div class="gameInst">
-            <h2>HANGMAN TIPS & STRATEGIES</h2>
+            <h2>GAME TIPS & STRATEGIES</h2>
             <p>Use your vowels. Looking at vowels is a good way to start. Since there are only 5, you can fill in some blanks pretty quickly. They can even help you guess the answer straight away. For example, if you try the letter A and the word looks like this ‘_A_A_A’, you might be able to guess straight away that the answer is BANANA just from one letter.</p>
           </div>
         </div>
         <h3>Good Luck and Have fun!</h3>
 
+    
+        <!--Buttons-->
         <div class="btn">
-          <button type="button" class="scoreBtn">Score</button>
-          <button type="button" class="playBtn">Play!</button>
-          <button type="button" class="inputBtn">Enter your choice</button>
-          <button type="button" class="playAgainBtn">Play again</button>
+          <form class="btnForm">
+            <button type="button" class="playBtn btnCss btn-js">Play!</button>
+            <label for="scoreBtn">
+              <input type="submit" value="Score: 0" id="scoreBtn" class ="btnCss btn-js">
+            </label>
+            <label for="ownChoiceBtn">
+              <input type="submit" value="Enter Your Own" id="ownChoiceBtn" class= "btnCss btn-js">
+            </label>
+            <label for="playerInput"><br>
+              <input type="text" placeholder="Enter your own word (no special characters)" id="playerInput" name="playerChoice" >
+            </label>
+            <button type="button" class="playAgainBtn btnCss btn-js">Play again</button>
+          </form>
+         
         </div>
-
+    
     </div>
     <script src = "project.js"></script>
   </body>
