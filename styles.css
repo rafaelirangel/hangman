@@ -1,0 +1,39 @@
+body{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+}
+
+h1{
+text-align: center;
+}
+
+h3{
+   text-align: center;
+   font-size: 25px;
+}
+
+ .instContent{
+   gap: 20px;
+   row-gap: 20px;
+   
+ }
+
+ .gameInst{
+   flex-basis: 30%;
+   padding-right: 20px;
+   border: 2px solid black;
+   border-radius: 10px;
+   margin-top: 20px;
+ }
+
+ /* nth matches elements based on their position among a group of siblings */
+ .gameInst:nth-child(1){background-color: aquamarine;} 
+ .gameInst:nth-child(2){background-color: red;}
+
+ @media(min-width: 800px){
+   .instContent{
+      display: flex;
+      justify-content: center;
+   }
+ }
