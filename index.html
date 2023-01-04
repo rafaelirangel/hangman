@@ -1,0 +1,81 @@
+<!-- Suggested Ways to Get Started
+Create your bronze, silver, and gold plan.
+Break the project down into different components (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use a whiteboard!
+Use your Development Tools (console.log, inspector, alert statements, etc) to debug and solve problems
+Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know… procrastinating.
+Commit early, commit often. Don’t be afraid to break something because you can always go back in time to a previous version.
+Make it work, make it good, make it fast. Don’t get hung up on only saving or writing code that is good code. Get it working first, even if it means writing bad or ugly code. Once it’s working, come back and refactor!
+Consult documentation resources (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
+Don’t be afraid to write code that you know you will have to remove later. Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then. -->
+
+
+<!-- Requirements
+Technical Requirements
+Your game must:
+Render in the browser
+Include separate HTML / CSS / JavaScript files
+Use JavaScript for DOM manipulation
+Be deployed online, using Github Project pages and/or to a custom domain.
+Use semantic markup for HTML and CSS (adhere to best practices)
+Show a good commit history with frequent commits
+Additionally, your project should stick with KISS (Keep It Stupid Simple) and DRY (Don’t Repeat Yourself) principles. -->
+
+
+<!-- Hangman
+Have a player enter a word that will be guessed during the game. The word is then hidden and represented by blank spaces. The second player then chooses letters, which are revealed if present.
+Bonus:
+Add timer-based scoring
+Track scores across games (even if the page is reloaded) -->
+
+<!-- Pseudocode
+Display the rules of the game
+Ask the user if he wants to enter a word, or choose a ramdon One.
+If he choses a random, create a list of words and display a random one.
+Display a hint
+display a keyboard to the player can choose a letter
+Keep track of how many errors he had and if the letters matches with the chosen word
+display the hangman board and add parts of the body if there is a mistake
+Keep up the score
+Ask if the player wants to play again. -->
+
+
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Hangman</title>
+    <link rel="stylesheet" href="styles.css">
+	  
+  </head>
+  <body>
+    <div class="container">
+        <h1>Welcome to the HangMan!</h1>
+        
+        <div class="instContent">
+          <div class="gameInst">
+            <h2>GAME INSTRUCTIONS</h2>
+            <p>Guess the letters in the secret word to solve the puzzle. You can guess a letter by clicking on it.
+                  Game ends when the player either correctly identifies the word or submits 6 incorrect guesses.
+                  Choose play to jump right into a game, or choose your own word by typing it on your keyboard.</p>
+          </div>
+          <div class="gameInst">
+            <h2>HANGMAN TIPS & STRATEGIES</h2>
+            <p>Use your vowels. Looking at vowels is a good way to start. Since there are only 5, you can fill in some blanks pretty quickly. They can even help you guess the answer straight away. For example, if you try the letter A and the word looks like this ‘_A_A_A’, you might be able to guess straight away that the answer is BANANA just from one letter.</p>
+          </div>
+        </div>
+        <h3>Good Luck and Have fun!</h3>
+
+        <div class="btn">
+          <button type="button" class="scoreBtn">Score</button>
+          <button type="button" class="playBtn">Play!</button>
+          <button type="button" class="inputBtn">Enter your choice</button>
+          <button type="button" class="playAgainBtn">Play again</button>
+        </div>
+
+    </div>
+    <script src = "project.js"></script>
+  </body>
+</html>
