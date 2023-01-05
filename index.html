@@ -47,47 +47,90 @@ Ask if the player wants to play again. -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hangman</title>
-    <link rel="stylesheet" href="styles.css">
-	  
+    <link rel="stylesheet" href="styles.css">  
   </head>
   <body>
     <!--Container for the whole page-->
     <div class="container">
+      <section>
         <h1>Welcome to the HangMan!</h1>
-        <!--Instructions and Hints-->
-        <div class="instContent">
+          <!--Instructions and Hints-->
+        <div class="instHintContent">
           <div class="gameInst">
             <h2>GAME INSTRUCTIONS</h2>
             <p>Guess the letters in the secret word to solve the puzzle. You can guess a letter by clicking on it.
             <br>Game ends when the player either correctly identifies the word or submits 6 incorrect guesses.
-            <br>Choose play to jump right into the game, or choose 'Enter Your Own' to enter your own choice by typing it on your keyboard.</p>
+            <br>Choose play to jump right into the game, or choose 'Enter Your Own' to enter your own choice of word by typing it on your keyboard and press the 'Enter' key to start.</p>
           </div>
           <div class="gameInst">
             <h2>GAME TIPS & STRATEGIES</h2>
             <p>Use your vowels. Looking at vowels is a good way to start. Since there are only 5, you can fill in some blanks pretty quickly. They can even help you guess the answer straight away. For example, if you try the letter A and the word looks like this ‘_A_A_A’, you might be able to guess straight away that the answer is BANANA just from one letter.</p>
-          </div>
+          </div>         
         </div>
-        <h3>Good Luck and Have fun!</h3>
+        <h3>Good Luck and Have fun!</h3>      
+      </section>
 
-    
-        <!--Buttons-->
-        <div class="btn">
+        <div class="hint"></div>
+
+      <section>
+        <!--Game Play btns-->
+        <div class="GamePlaybtns">
           <form class="btnForm">
-            <button type="button" class="playBtn btnCss btn-js">Play!</button>
+            <!--change this score btn later to span tag-->
             <label for="scoreBtn">
               <input type="submit" value="Score: 0" id="scoreBtn" class ="btnCss btn-js">
             </label>
+            <button type="button" id="playBtn" class="btnCss btn-js">Play!</button>
             <label for="ownChoiceBtn">
               <input type="submit" value="Enter Your Own" id="ownChoiceBtn" class= "btnCss btn-js">
             </label>
             <label for="playerInput"><br>
               <input type="text" placeholder="Enter your own word (no special characters)" id="playerInput" name="playerChoice" >
             </label>
-            <button type="button" class="playAgainBtn btnCss btn-js">Play again</button>
+            <button type="button" id="playAgainBtn" class="btnCss btn-js">Play again</button>
           </form>
-         
         </div>
-    
+      </section>
+       
+      <section>
+        <div class="gameboard">
+          <div id="wordDisplay"></div>
+          <div class="guess"></div>
+        </div>
+      </section>
+      
+      <section>
+        <div class="keyboard">
+          <div class="row">
+            <button type="button" class="keyboardBtn">a</button>
+            <button type="button" class="keyboardBtn">b</button>
+            <button type="button" class="keyboardBtn">c</button>
+            <button type="button" class="keyboardBtn">d</button>
+            <button type="button" class="keyboardBtn">e</button>
+            <button type="button" class="keyboardBtn">f</button>
+            <button type="button" class="keyboardBtn">g</button>
+            <button type="button" class="keyboardBtn">h</button>
+            <button type="button" class="keyboardBtn">i</button>
+            <button type="button" class="keyboardBtn">j</button>
+            <button type="button" class="keyboardBtn">k</button>
+            <button type="button" class="keyboardBtn">l</button>
+            <button type="button" class="keyboardBtn">m</button>
+            <button type="button" class="keyboardBtn">n</button>
+            <button type="button" class="keyboardBtn">o</button>
+            <button type="button" class="keyboardBtn">p</button>
+            <button type="button" class="keyboardBtn">q</button>
+            <button type="button" class="keyboardBtn">r</button>
+            <button type="button" class="keyboardBtn">s</button>
+            <button type="button" class="keyboardBtn">t</button>
+            <button type="button" class="keyboardBtn">u</button>
+            <button type="button" class="keyboardBtn">v</button>
+            <button type="button" class="keyboardBtn">w</button>
+            <button type="button" class="keyboardBtn">x</button>
+            <button type="button" class="keyboardBtn">y</button>
+            <button type="button" class="keyboardBtn">z</button>
+          </div>
+        </div>
+      </section>  
     </div>
     <script src = "project.js"></script>
   </body>
