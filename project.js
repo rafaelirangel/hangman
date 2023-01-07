@@ -12,6 +12,8 @@ let keyboard = document.querySelectorAll('.keyboardBtn');
 let winner = document.querySelector('.winner')
 let loser = document.querySelector('.loser')
 let ownChoiceBtn = document.querySelector('#ownChoiceBtn');
+let man = document.getElementById("hangmanCanvas");
+let canvas = document.getElementById("hangmanCanvas");
 //Display input field after the player click on 'Enter your own' btn
 ownChoiceBtn.addEventListener('click', (e) => {
   e.preventDefault();
@@ -45,6 +47,7 @@ let playRandom = (e) => {
     console.log(word)
     hint.innerHTML = " Here is a hint: <span style='color: red'>Name of a country!</span> " //Display a hint when the player choses do play random//
     drawGallows()
+    keyboardAction()
 }
 playBtn.addEventListener('click', playRandom)
 
@@ -64,34 +67,18 @@ let optionsBtnBlocker = () => {
   });
 }
 
-drawGallows = function (){
-    var canvas = document.getElementById("hangmanCanvas");
-    var ctx = canvas.getContext("2d");
-    ctx.strokeStyle = "red";
-    ctx.beginPath();
-    ctx.moveTo(100, 1);
-    ctx.lineTo(100, 200);
-    ctx.moveTo(100, 1);
-    ctx.lineTo(210, 1); //the first  is the size the second the direction you're pointing to
-    ctx.moveTo(210, 30); //the first arg adjust the direction of your line, the sec the size
-    ctx.lineTo(210, 1);
-    ctx.stroke();
-  
-
-}
-
 
 //Compare selected letter with the random word and disable option of enter the same letter again, change background color of the selected letters.
-let keyboardAction = keyboard.forEach(keyboardBtn => {
+function keyboardAction (){
+    keyboard.forEach(keyboardBtn => {
     keyboardBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    //Add a different style to the keyboard letter after its pressed and disable it so player can't press it again
-    keyboardBtn.style.backgroundColor= 'lightBlue';
+    keyboardBtn.style.backgroundColor= 'lightBlue'; 
     keyboardBtn.style.color= 'black';
-    keyboardBtn.disabled = true;
+    keyboardBtn.disabled = true; 
 
     let randomWord = word.split('')
-    let dashes = document.getElementsByClassName('dashes')
+    let dashes = document.getElementsByClassName('dashes') 
 
     //if array contains the clicked value, replace the matched dash with letter, increase the  count so the game can end when count matches the word length.
     //else draw hangman body and decrease chances.
@@ -118,7 +105,7 @@ let keyboardAction = keyboard.forEach(keyboardBtn => {
     }
     else{
         numOfChances -= 1
-        animate()
+        drawMan()
         if(numOfChances < 1){
             loser.style.display = 'block'
             loser.innerHTML = `<span style='color: red'>You lost! </span>the word was ${word}`
@@ -129,6 +116,67 @@ let keyboardAction = keyboard.forEach(keyboardBtn => {
     }
     })  
 })
+}
+
+//Draw hangman structure      
+drawGallows = function (){
+    let context = canvas.getContext("2d"); //canvas is my var name
+    context.strokeStyle = "red";
+    context.beginPath(); 
+    context.moveTo(100, 1); //first is the horizontal coordinate to be moved to, second is the vertical coordinate to be moved to.
+    context.lineTo(100, 200); // first is the x-axis coordinate of the line's end point, sec is the y-axis coordinate of the line's end point.
+    context.moveTo(100, 1);
+    context.lineTo(210, 1); 
+    context.moveTo(210, 30); 
+    context.lineTo(210, 1);
+    context.stroke(); //call all the moves
+}
+
+// Draw man
+let drawMan = function(){
+    let drawMe = numOfChances;
+    drawArr[drawMe]();
+}
+
+//Hangman head
+head = function(){
+    context = man.getContext('2d');
+    context.beginPath();
+    context.arc(210, 40, 10, 0, 2*Math.PI, true); //The head //arc(x, y, radius, startAngle, endAngle, counterclockwise) start point width, start point hight, radios size, start angle 0 and end angle to 2*Math.PI. (start angle in a circle is 0, then 0.5*PI, then 1*PI, 1.5*PI, 2*PI)
+    context.stroke();
+    }
+    
+//Cordinates for drawing parts of the body
+draw = function(fromX, fromY, toX, toY) {
+    context.moveTo(fromX, fromY);
+    context.lineTo(toX, toY);
+    context.stroke(); 
+}
+
+//Hangman body
+torso = function() {
+    draw(210, 50, 210, 110); //first and second are width and higth start point, third is width size, fourth hight direction
+   };
+  
+leftArm = function() {
+    draw(210, 60, 180, 80);
+  };
+
+rightArm = function() {
+    draw(210, 60, 240, 80); 
+   };
+
+leftLeg = function() {
+    draw(210, 110, 180, 130);
+  };
+  
+rightLeg = function() {
+    draw(210, 110, 240, 130);
+   };
+  
+drawArr= [rightLeg, leftLeg, rightArm, leftArm,  torso,  head]; 
+
+
 
 
 //Get Player input and add it to an arr and hide the input field
@@ -184,6 +232,7 @@ let playAgain = (e) => {
     wordDisplay.innerHTML = '';
     winCount = '';
     hint.innerHTML = '';
+    keyboardAction ();
 
 }
     playAgainBtn.addEventListener('click', playAgain)
