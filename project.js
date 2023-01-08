@@ -1,9 +1,5 @@
 //GET HTML ELEMENTS 
-
 let scoreBtn = document.querySelector('#scoreBtn');
-scoreBtn.addEventListener('click', function(e){
-    e.preventDefault(); })
-
 let playBtn = document.querySelector('#playBtn');
 let playerInput = document.querySelector('#playerInput');
 let playAgainBtn = document.querySelector('#playAgainBtn');
@@ -12,85 +8,97 @@ let keyboard = document.querySelectorAll('.keyboardBtn');
 let winner = document.querySelector('.winner')
 let loser = document.querySelector('.loser')
 let ownChoiceBtn = document.querySelector('#ownChoiceBtn');
-let man = document.getElementById("hangmanCanvas");
-let canvas = document.getElementById("hangmanCanvas");
-//Display input field after the player click on 'Enter your own' btn
-ownChoiceBtn.addEventListener('click', (e) => {
-  e.preventDefault();
-  playerInput.style.display = 'block';
-});
+let man = document.getElementById('hangmanCanvas');
+let canvas = document.getElementById('hangmanCanvas');
+let dashes = document.getElementsByClassName('dashes')
+let letterBtn = document.querySelectorAll('.keyboardBtn');
+let optionsBtn = document.querySelectorAll('.btnJs');
+let wordDisplay = document.getElementById('wordDisplay')
 
 // ***** FUNCTIONS *****//
-//Create arrays and variables to host datas
-let secretWord =["brazil", "venezuela", "cuba", "japan", "china", "germany", "france", "italy", "spain", "argentina", "united-states", "canada", "mexico", "colombia", "egypt", "iran", "india", "iraq", "israel", "greece", "nigeria", "australia", "sweden", "portugal", "equador", "peru", "dominican-republic", "costa-rica", "afghanistan", "albania", "andorra", "belgium", "cameroon", "chile", "indonesia", "jamaica", "maldives", "morocco"]
-let numOfChances = 6
-let numOfLivesLeft = ''
-let winCount = 0
-// let ownWord = []
 
-//Keep up Player Score
-let score = () => {}
+//Game count
+let numOfChances = 6
+let winCount = 0
 
 //Choose a random word if the player click 'Play' btn
 //when the player click play, get a random word, display that with dashes
 //when the player press the letter guesses check if that letter is in the random word
 //If Yes add it to the correct guess and replace the dash with that letter
 // if Not add it to the wrong guess, draw a part of the body and decrease the num of lives
+//Do the same with the user input
 
-let word = secretWord[Math.floor(Math.random() * secretWord.length)];
+scoreBtn.addEventListener('click', function(e){
+    e.preventDefault(); })
 
-let playRandom = (e) => {
+//Display input field after the player click on 'Enter your own' btn
+ownChoiceBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    optionsBtnBlocker()
-    let displayItem = word.replace(/./g, '<span class="dashes">_</span>');  //replace random word for '_' //
-    wordDisplay.innerHTML = displayItem
-    console.log(word)
-    hint.innerHTML = " Here is a hint: <span style='color: red'>Name of a country!</span> " //Display a hint when the player choses do play random//
-    drawGallows()
-    keyboardAction()
+    optionsBtnBlocker();
+    drawGallows();
+    playerInput.style.display = 'block';
+  });
+
+//Get the User input, replace it with dash and display it on the screen
+playerInput.addEventListener("keydown", function(e) {
+    e.preventDefault()
+    if(e.key === "Enter"){
+        let inputValue = playerInput.value
+        let dash = inputValue.replace(/./g, "-")
+        wordDisplay.innerHTML = dash
+    }
+  });
+
+//Get a random word, replace it with dash and display it on the screen
+function getRandom(){
+    let secretWord =["brazil", "venezuela", "cuba", "japan", "china", "germany", "france", "italy", "spain", "argentina", "united-states", "canada", "mexico", "colombia", "egypt", "iran", "india", "iraq", "israel", "greece", "nigeria", "australia", "sweden", "portugal", "equador", "peru", "dominican-republic", "costa-rica", "afghanistan", "albania", "andorra", "belgium", "cameroon", "chile", "indonesia", "jamaica", "maldives", "morocco"]
+    let randomSecWord = Math.floor(Math.random() * secretWord.length);
+    let randomWord = secretWord[randomSecWord]; // Get the word at the random index
+    let dasheWord = randomWord.replace(/./g, "-"); // Replace the word with a dash
+    wordDisplay.innerHTML = dasheWord;
+    console.log(randomWord)
 }
-playBtn.addEventListener('click', playRandom)
+
+playBtn.addEventListener('click', function(e){
+    e.preventDefault()
+    hint.innerHTML = " Here is a hint: <span style='color: red'>Name of a country!</span> " //Display a hint when the player choses do play random//
+    getRandom()
+    optionsBtnBlocker()
+    drawGallows()
+})
 
 //BLOCK BUTTONS AFTER YOU START, LOSE OR WIN THE GAME
 //block all keyboard buttons
 let keyboadBtnBlocker = () => {
-    let letterBtn = document.querySelectorAll(".keyboardBtn");
     letterBtn.forEach((button) => {
     button.disabled = true;
     })
 }
 //block all game options btn 
 let optionsBtnBlocker = () => {
-    let optionsBtn = document.querySelectorAll(".btnJs");
     optionsBtn.forEach((button) => {
     button.disabled = true;
   });
 }
 
-
 //Compare selected letter with the random word and disable option of enter the same letter again, change background color of the selected letters.
-function keyboardAction (){
-    keyboard.forEach(keyboardBtn => {
+function game(){ keyboard.forEach(keyboardBtn => {
     keyboardBtn.addEventListener('click', (e) => {
     e.preventDefault();
     keyboardBtn.style.backgroundColor= 'lightBlue'; 
     keyboardBtn.style.color= 'black';
-    keyboardBtn.disabled = true; 
-
+    keyboardBtn.disabled = true;
     let randomWord = word.split('')
-    let dashes = document.getElementsByClassName('dashes') 
-
-    //if array contains the clicked value, replace the matched dash with letter, increase the  count so the game can end when count matches the word length.
-    //else draw hangman body and decrease chances.
+   
+ //if array contains the clicked value, replace the matched dash with letter, increase the  count so the game can end when count matches the word length.
+//else draw hangman body and decrease chances.
     if(randomWord.includes(keyboardBtn.innerText)){
         randomWord.forEach((randChar, i) => {
             //If character in arr is equals to pressed btn, replace dash with letter
             if(randChar === keyboardBtn.innerText){
                 dashes[i].innerText = randChar;
-
                 //increment counter
                 winCount +=1
-
                 //display a message if player wins and increase score
                 if(winCount === randomWord.length){
                     winner.style.display = 'block'
@@ -99,7 +107,6 @@ function keyboardAction (){
                     keyboadBtnBlocker()
                     optionsBtnBlocker()
                 }
-               
             }
         })
     }
@@ -109,7 +116,6 @@ function keyboardAction (){
         if(numOfChances < 1){
             loser.style.display = 'block'
             loser.innerHTML = `<span style='color: red'>You lost! </span>the word was ${word}`
-            keyboardBtn.disabled = true
             keyboadBtnBlocker()
             optionsBtnBlocker()
         }
@@ -118,10 +124,16 @@ function keyboardAction (){
 })
 }
 
+// Draw man
+let drawMan = function(){
+    let drawMe = numOfChances;
+    drawArr[drawMe]();
+}
+
 //Draw hangman structure      
 drawGallows = function (){
-    let context = canvas.getContext("2d"); //canvas is my var name
-    context.strokeStyle = "red";
+    let context = canvas.getContext("2d"); //canvas is my var name, get context returns a drawing context on the canvas
+    context.strokeStyle = "black";
     context.beginPath(); 
     context.moveTo(100, 1); //first is the horizontal coordinate to be moved to, second is the vertical coordinate to be moved to.
     context.lineTo(100, 200); // first is the x-axis coordinate of the line's end point, sec is the y-axis coordinate of the line's end point.
@@ -130,12 +142,6 @@ drawGallows = function (){
     context.moveTo(210, 30); 
     context.lineTo(210, 1);
     context.stroke(); //call all the moves
-}
-
-// Draw man
-let drawMan = function(){
-    let drawMe = numOfChances;
-    drawArr[drawMe]();
 }
 
 //Hangman head
@@ -178,71 +184,37 @@ drawArr= [rightLeg, leftLeg, rightArm, leftArm,  torso,  head];
 
 
 
-
-//Get Player input and add it to an arr and hide the input field
-// let userInput = (e) => {
-//     if(e.key === "Enter"){
-//         e.preventDefault();
-//         // ownWord.push(playerInput.value);
-//         playerInput.style.display = 'none'
-//         // console.log(ownWord);
-
-//         let userWord = playerInput.value.split('');
-//         console.log(userWord)
-
-//         if(userWord.includes(keyboardBtn.innerText)){
-//             userWord.forEach((userChar, i) => {
-//                 //If character in arr is equals to pressed btn, replace dash with letter
-//                 if(userChar === key){
-//                     dashes[i].innerText = userChar;
-    
-//                     //increment counter
-//                     winCount +=1
-    
-//                     //display a message if player wins and increase score
-//                     if(winCount === userWord.length){
-//                         winner.innerHTML = `You <span style = 'color: red'> Win! </span> The word was ${word}`
-//                         scoreBtn.value += 1
-//                         keyboadBtnBlocker()
-//                         optionsBtnBlocker()
-//                     }
-                   
-//                 }
-//             })
-//         }
-//         else{
-//             numOfChances -= 1
-//             if(numOfChances < 1){
-//                 loser.innerHTML = `You lost! the word was ${word}`
-//                 // keyboardBtn.disabled = true
-//                 keyboadBtnBlocker()
-//                 optionsBtnBlocker()
-//             }
-//         }
-//         }  
-//     }
-// playerInput.addEventListener('keypress', userInput)
-
-
-    
-
 //Restart the game if the player click on 'Play again' btn
-let playAgain = (e) => {
-    e.preventDefault();
-    wordDisplay.innerHTML = '';
+let playAgain = () => {
+    context.clearRect(0, 0, 400, 300) //clear the contents of a canvas element (x, y, width, height)
+    // let newRandom = secretWord[Math.floor(Math.random() * secretWord.length)];
+    numOfChances= 6;
     winCount = '';
     hint.innerHTML = '';
-    keyboardAction ();
+    winner.innerHTML = '';
+    loser.innerHTML = '';
+    playRandom()
+    keyboard.forEach((kb) => {
+        if(kb.disabled == true){
+            kb.disabled = false
+            kb.style.color= 'black';
+            kb.style.backgroundColor = 'white'
+        }
+    })
 
-}
-    playAgainBtn.addEventListener('click', playAgain)
+    optionsBtn.forEach((ob) => {
+        if(ob.disabled == true){
+        ob.disabled = false;
+        }
+      });
+    }
+
+ 
+    //get a random word
+    //reset wincount
+
+//    
+playAgainBtn.addEventListener('click', playAgain)
 
 
-
-// //erase all content from previous game
-// wordDisplay.innerHTML = "";
-// keyboard = "";
-// letterGuessed = [];
-
-// }
 
