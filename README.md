@@ -17,7 +17,7 @@ Press 'Play' to have a random word chosen for you.
 + JavaScript
 
 ## Challenges
-Drawing the hangman structure and body was challenging, I did a lot of reesearch and decided to use canvas(the canvas element creates a fixed-size drawing surface that displays graphics by using a canvas context. The context provides a set of drawing functions, such as fillRect(), strokeRect(), clearRect(), drawImage(), etc., that can be used to draw shapes, lines, and images on the canvas.)
+Drawing the hangman structure and body was challenging, I did a lot of reesearch and decided to use canvas(the canvas element creates a fixed-size drawing surface that displays graphics by using a canvas context. The context provides a set of drawing functions, such as fillRect(), strokeRect(), clearRect(), drawImage(), etc., that can be used to draw shapes, lines, and images on the canvas.)  
 Reseting the game was also hard for me (I'm still working on it because its not working how it should be).
 
 ## Next Steps
@@ -28,5 +28,5 @@ I would like to make my code more proficient and add more style to it
 
 
 ## Contribute
-Source code: https://github.com/rafaelirangel/hangman
+Source code: https://github.com/rafaelirangel/hangman  
 Issues: https://github.com/rafaelirangel/hangman/issues
