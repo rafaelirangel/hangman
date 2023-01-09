@@ -1,31 +1,3 @@
-<!-- Suggested Ways to Get Started
-Create your bronze, silver, and gold plan.
-Break the project down into different components (data, presentation, views, style, DOM manipulation) and brainstorm each component individually. Use a whiteboard!
-Use your Development Tools (console.log, inspector, alert statements, etc) to debug and solve problems
-Work through the lessons in class & ask questions when you need to! Think about adding relevant code to your game each night, instead of, you know… procrastinating.
-Commit early, commit often. Don’t be afraid to break something because you can always go back in time to a previous version.
-Make it work, make it good, make it fast. Don’t get hung up on only saving or writing code that is good code. Get it working first, even if it means writing bad or ugly code. Once it’s working, come back and refactor!
-Consult documentation resources (MDN, jQuery, etc.) at home to better understand what you’ll be getting into.
-Don’t be afraid to write code that you know you will have to remove later. Create temporary elements (buttons, links, etc) that trigger events if real data is not available. For example, if you’re trying to figure out how to change some text when the game is over but you haven’t solved the win/lose game logic, you can create a button to simulate that until then. -->
-
-
-<!-- Requirements
-Technical Requirements
-Your game must:
-Render in the browser
-Include separate HTML / CSS / JavaScript files
-Use JavaScript for DOM manipulation
-Be deployed online, using Github Project pages and/or to a custom domain.
-Use semantic markup for HTML and CSS (adhere to best practices)
-Show a good commit history with frequent commits
-Additionally, your project should stick with KISS (Keep It Stupid Simple) and DRY (Don’t Repeat Yourself) principles. -->
-
-
-<!-- Hangman
-Have a player enter a word that will be guessed during the game. The word is then hidden and represented by blank spaces. The second player then chooses letters, which are revealed if present.
-Bonus:
-Add timer-based scoring
-Track scores across games (even if the page is reloaded) -->
 
 <!-- Pseudocode
 Display the rules of the game
@@ -38,21 +10,19 @@ display the hangman board and add parts of the body if there is a mistake
 Keep up the score
 Ask if the player wants to play again. -->
 
-
-
-
 <!DOCTYPE html>
 <html>
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Hangman</title>
-    <link rel="stylesheet" href="styles.css">  
+    <link rel="stylesheet" href="styles.css"> 
+    <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;700&family=Lobster&family=Montserrat:wght@200;400&family=PT+Sans+Narrow&family=Poppins&family=Raleway&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet"> 
   </head>
   <body>
     <!--Container for the whole page-->
     <div class="container">
-      <section>
+      <section class="header">
         <h1>Welcome to the HangMan!</h1>
           <!--Instructions and Hints-->
         <div class="instHintContent">
@@ -69,38 +39,34 @@ Ask if the player wants to play again. -->
         </div>
         <h3>Good Luck and Have fun!</h3>      
       </section>
-
-        <div class="hint"></div>
-
-      <section>
-        <!--Game Play btns-->
-        <div class="GamePlaybtns">
+      <!--Game Play btns-->
+      <section class="mainGameBtns">
+        <div class="gamePlay">
           <form class="btnForm">
-            <!--change this score btn later to span tag-->
             <label for="scoreBtn">
-              <input type="submit" value="Score: 0" id="scoreBtn" class ="btnCss btn-js">
+              <input type="submit" value="Score: 0" id="scoreBtn" class ="btnCss">
             </label>
-            <button type="button" id="playBtn" class="btnCss btn-js">Play!</button>
-            <label for="ownChoiceBtn">
-              <input type="submit" value="Enter Your Own" id="ownChoiceBtn" class= "btnCss btn-js">
+            <label for="numOfLives">
+              <input type="submit" value="Num of Lives Left: 6" id="numOfLives" class ="btnCss">
             </label>
-            <label for="playerInput"><br>
-              <input type="text" placeholder="Enter your own word (no special characters)" id="playerInput" name="playerChoice" >
-            </label>
-            <button type="button" id="playAgainBtn" class="btnCss btn-js">Play again</button>
+            <button type="button" id="playBtn" class="btnCss btnJs">Play!</button>
+            <button type="button" id="playAgainBtn" class="btnCss ">Play again</button>
           </form>
         </div>
       </section>
        
-      <section>
-        <div class="gameboard">
-          <div id="wordDisplay"></div>
-          <div class="guess"></div>
-        </div>
+      <section class="gameBoard">
+        <div class="gamePlay"></div>
+          <div class="hint"></div>
+          <div class="hangmanDraw">
+            <canvas id="hangmanCanvas"></canvas>
+          </div>
+          <div id="wordDisplay" class="wordDisplay "></div>
+          <div class="winner"></div>
+          <div class="loser"></div>
       </section>
       
-      <section>
-        <div class="keyboard">
+      <section class="keyboard">
           <div class="row">
             <button type="button" class="keyboardBtn">a</button>
             <button type="button" class="keyboardBtn">b</button>
@@ -128,8 +94,8 @@ Ask if the player wants to play again. -->
             <button type="button" class="keyboardBtn">x</button>
             <button type="button" class="keyboardBtn">y</button>
             <button type="button" class="keyboardBtn">z</button>
+            <button type="button" class="keyboardBtn">-</button>
           </div>
-        </div>
       </section>  
     </div>
     <script src = "project.js"></script>
