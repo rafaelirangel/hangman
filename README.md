@@ -2,7 +2,7 @@
 
 ## Installation
 Fork and clone this repository. Open the index.html file in your browser to play the game!
-Or, check out the deployed version at //COLOCAR O LINK AQUI
+Or, check out the deployed version at [PLAY HANGMAN](https://rafaelirangel.github.io/hangman/)
 
 ## Game Explanation
 Hangman is a word guessing game in which players try to guess a word by guessing letters. The game typically starts with a blank word, and the player tries to guess letters that might be in the word. For each letter that the player guesses incorrectly, a part of a stick figure is drawn, representing a person being "hanged." The player has a limited number of chances(in this case the number of chances are 6) to guess the word before the 'person' is fully drawn and the game is lost.
