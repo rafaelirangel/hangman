@@ -1,21 +1,28 @@
+/* add some animations on the page */
+
 body{
    margin: 0;
    padding: 0;
    box-sizing: border-box;
+   background-image: url(img/annie-spratt-nWiS2rgtVts-unsplash.jpg);
+   background-size:cover;
+   background-repeat: none;
+   font-family: 'Crimson Text', serif;;
 }
 
 h1{
-text-align: center;
-}
-
-h3{
+   font-size: 30px;
    text-align: center;
-   font-size: 25px;
+   margin-bottom: 0;
 }
 
 h2{
    margin-bottom: 10px;
+}
 
+h3{
+   text-align: center;
+   font-size: 22px;  
 }
 
 p{
@@ -24,7 +31,72 @@ p{
    margin-top: 0;
 }
 
- .instContent{
+button{
+align-self: center
+}
+
+canvas{
+ width: 400px;
+ height: 300px;
+ margin-top: 20px;
+ border:  white dashed 2px;
+ padding: 15px;
+ text-align: center;
+}
+
+.hint{
+   font-size: 22px;
+   font-weight: bold;
+   text-align: center;
+   margin-top: 15px;
+   animation: hint 3s linear infinite;
+}
+
+@keyframes hint{
+   0% {
+     opacity: 0;
+   }
+   50% {
+     opacity: 1;
+   }
+   100% {
+     opacity: 0;
+   }
+ }
+
+.wordDisplay{
+   text-align: center;
+   margin: 20px 0;
+}
+
+.winner, .loser{
+   display: none;
+   border: 2px solid black;
+   border-radius: 5px;
+   text-align: center;
+   font-size: 27px;
+   margin: 20px 0;
+   color: white;
+   background-color: black;
+   padding: 10px;
+}
+
+.btnForm{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+}
+
+.mainGameBtns{
+   text-align: center;
+}
+
+.container{
+   box-sizing: border-box;
+   margin: 19px;
+}
+
+ .instHintContent{
    gap: 20px;
    row-gap: 20px;
  }
@@ -38,45 +110,101 @@ p{
    align-content: center;
    line-height: 17pt;
  }
-
  /* nth matches elements based on their position among a group of siblings */
  .gameInst:nth-child(1){background-color: aquamarine;} 
  .gameInst:nth-child(2){background-color: lightblue;}
 
  .btnCss{
-   font-size: 20px;
+   flex-basis: 30%;
+   font-size: 16px;
    background-color: lightblue;
    border-radius: 5px;
-   text-decoration: none;
+   border-color: black;
    padding: 10px 15px;
+   width: 220px;
+   height: 50px;
+   margin-top: 10px;
+   margin-bottom: 0;
  }
 
  .btnCss:hover{
    background-color: white;
  }
 
-
-
- #playerInput{
-   display: none;
-   font-size: 15px;
-   width: 80%;
-   padding: 12px 20px;
-   margin: 8px 0;
-   border-radius: 5px;
-   box-sizing: border-box;
+ .keyboard{
+   margin-top: 35px;
+   text-align: center;
  }
 
+ .keyboardBtn{
+   font-size: 25px;
+   margin: 5px;
+   padding: 10px 15px;
+   border-radius: 17px;
+   border-color: black;
+ }
 
+ .keyboardBtn:hover{
+   background-color: aliceblue;
+ }
 
+ .dashes{
+   font-size: 30px;
+   padding: 5px;
+ }
 
- @media(min-width: 800px){
-   .instContent{
+ .hangmanDraw{
+   text-align: center;
+   justify-content: center;
+   color: black;
+}
+
+ #hangmanCanvas{
+   color: black;
+   }
+
+ @media(min-width: 768px){
+   h1{
+      font-size: 50px;
+      }
+
+   h3{
+   font-size: 30px;
+   }
+   .hint{
+      font-size: 25px;
+      }
+
+   .hangmanDraw{
+      text-align: center;
+      justify-content: center;
+      color: black;
+   }
+
+   .btnCss{
+      font-size: 20px;
+      width: 300px;
+      height: 50px;
+    }
+
+   .instHintContent{
       display: flex;
       justify-content: center;
    }
 
-   #playerInput{
-      width: 25%;
+   .btnForm{
+      justify-content: center;
+      text-align: center;
    }
+
+   .keyboardBtn{
+      font-size: 32px;
+      padding: 15px 25px;
+    }
+
+    .gamePlay{
+      justify-content: center;
+      text-align: center;
+     }
+
  }
